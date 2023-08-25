@@ -11,13 +11,11 @@ axios.get(url)
         console.log("successfully connected")
         let $ = cheerio.load(response.data)
         const parsedData = []
-        let x = 0
         $('.quoteText').each((index, element)=>{
-            x = x+1
-            //console.log(x)
+            
             const filteredTxt = $(element).contents().filter(function(){
                 return this.type ==='text'
-            }).text().trim()
+            }).text().replace(/\n/g,'').replace('      ―','').trim()
 
             if(filteredTxt){
                 parsedData.push(index, filteredTxt)
