@@ -6,11 +6,16 @@ const { stringify } = require('querystring')
 
 let url = "https://www.goodreads.com/quotes"
 
-axios.get(url)
+
+const parsedData = []
+let pagesScraped = 2
+
+    for (let i=0; i<pagesScraped;i++){
+        url=url+`?page=${i}`
+        axios.get(url)
     .then(response=>{
         console.log("successfully connected")
         let $ = cheerio.load(response.data)
-        const parsedData = []
         $('.quoteText').each((index, element)=>{
             
             const filteredTxt = $(element).contents().filter(function(){
@@ -18,11 +23,11 @@ axios.get(url)
             }).text().replace(/\n/g,'').replace('      ―','').trim()
 
             if(filteredTxt){
-                parsedData.push(index, filteredTxt)
+                parsedData.push(i, filteredTxt)
             }
 
         })
-        console.log(parsedData)
+     //  console.log(parsedData)
 
         const parsedJson = JSON.stringify(parsedData, null, 2)
         fs.writeFileSync('quotes.json',parsedJson,'utf-8')
@@ -31,3 +36,7 @@ axios.get(url)
     }).catch(error=>{
         console.log("Can't connect. Error:", error)
     })
+
+        
+        url="https://www.goodreads.com/quotes"
+    }
