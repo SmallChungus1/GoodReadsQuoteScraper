@@ -10,7 +10,7 @@ let url = "https://www.goodreads.com/quotes"
 const parsedData = []
 let pagesScraped = 2
 
-    for (let i=0; i<pagesScraped;i++){
+    for (let i=1; i<=pagesScraped; i++){
         url=url+`?page=${i}`
         axios.get(url)
     .then(response=>{
