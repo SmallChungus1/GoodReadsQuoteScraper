@@ -8,7 +8,7 @@ let url = "https://www.goodreads.com/quotes"
 
 
 const parsedData = []
-let pagesScraped = 2
+let pagesScraped = 11
 
     for (let i=1; i<=pagesScraped; i++){
         url=url+`?page=${i}`
@@ -27,7 +27,6 @@ let pagesScraped = 2
             }
 
         })
-     //  console.log(parsedData)
 
         const parsedJson = JSON.stringify(parsedData, null, 2)
         fs.writeFileSync('quotes.json',parsedJson,'utf-8')
