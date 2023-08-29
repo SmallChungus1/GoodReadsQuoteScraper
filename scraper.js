@@ -8,7 +8,11 @@ let url = "https://www.goodreads.com/quotes"
 
 
 const parsedData = []
-let pagesScraped = 11
+let pagesScraped = 10
+const maxPage = 100
+if (pagesScraped>maxPage){
+    console.log("Error: pages to be scraped exceeds max number of pages on website")
+}else{
 
     for (let i=1; i<=pagesScraped; i++){
         url=url+`?page=${i}`
@@ -39,3 +43,7 @@ let pagesScraped = 11
         
         url="https://www.goodreads.com/quotes"
     }
+
+}
+
+    
