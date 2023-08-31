@@ -8,7 +8,7 @@ let url = "https://www.goodreads.com/quotes"
 
 
 const parsedData = []
-let pagesScraped = 10
+let pagesScraped = 25
 const maxPage = 100
 if (pagesScraped>maxPage){
     console.log("Error: pages to be scraped exceeds max number of pages on website")
@@ -24,7 +24,7 @@ if (pagesScraped>maxPage){
             
             const filteredTxt = $(element).contents().filter(function(){
                 return this.type ==='text'
-            }).text().replace(/\n/g,'').replace('      ―','').trim()
+            }).text().replace(/\n/g,'').replace('      ―','').replace(/["“”]/g, '').trim()
 
             if(filteredTxt){
                 parsedData.push(i, filteredTxt)
