@@ -27,7 +27,7 @@ if (pagesScraped>maxPage){
             }).text().replace(/\n/g,'').replace('      ―','').replace(/["“”]/g, '').trim()
 
             if(filteredTxt){
-                parsedData.push(i, filteredTxt)
+                parsedData.push(filteredTxt)
             }
 
         })
